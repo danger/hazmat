@@ -20,3 +20,13 @@ yarn
 # sets up the project subfolders
 yarn setup
 ```
+
+Then running `yarn start` will open up a bunch of concurrent servers for you.
+
+You can access:
+
+- [WIP] Webroot: http://localhost:9000
+- GraphiQL: http://localhost:9000/api/graphiql
+- Peril GraphQL: http://localhost:9000/api/graphql
+- GitHub Webhook: http://localhost:9000/api/webhook
+- Dashboard: http://localhost:9000/dashboard
