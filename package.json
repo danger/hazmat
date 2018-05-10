@@ -1,0 +1,28 @@
+{
+  "name": "hazmat",
+  "version": "1.0.0",
+  "description": "Web infra",
+  "main": "index.js",
+  "repository": "https://github.com/danger/hazmat.git",
+  "author": "Orta Therox <orta.therox@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@types/shelljs": "^0.7.9",
+    "concurrently": "^3.5.1",
+    "micro-proxy": "^1.1.0",
+    "shelljs": "^0.8.2",
+    "ts-node": "^6.0.3",
+    "typescript": "^2.8.3"
+  },
+  "scripts": {
+    "setup": "ts-node scripts/setup.ts",
+
+    "start": "concurrently --names 'PRX,API,WEB' -c 'black.bgWhite,bgBlue.bold,bgGreen.bold' 'yarn run proxy' 'yarn run peril' 'yarn run peril.systems'",
+    "proxy": "micro-proxy -r peril.dev.rules -p 9000",
+    "peril": "cd peril && PORT=9001 yarn start",
+    "peril.systems": "cd peril.systems && PORT=9002 yarn dev",
+
+    "deploy": ""
+  }
+}
