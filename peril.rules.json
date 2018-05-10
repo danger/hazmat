@@ -1,0 +1,6 @@
+{
+  "rules": [
+    { "pathname": "staging/api/**", "method": ["GET", "POST"], "dest": "staging-api.peril.systems" },
+    { "pathname": "staging/dashboard/**", "method": ["GET", "POST"], "dest": "staging.peril.systems" }
+  ]
+}
