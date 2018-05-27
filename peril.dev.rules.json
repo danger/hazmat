@@ -1,6 +1,6 @@
 {
   "rules": [
-    { "pathname": "dev/api/**", "method": ["GET", "POST"], "dest": "http://localhost:9001" },
-    { "pathname": "dev/dashboard/**", "method": ["GET", "POST"], "dest": "http://localhost:9002" }
+    { "pathname": "api", "method": ["GET", "POST"], "dest": "http://localhost:9001" },
+    { "pathname": "dashboard", "method": ["GET", "POST"], "dest": "http://localhost:9002" }
   ]
 }

@@ -18,10 +18,10 @@
   "scripts": {
     "setup": "ts-node scripts/setup.ts",
 
-    "start": "concurrently --names 'PRX,API,WEB' -c 'black.bgWhite,bgBlue.bold,bgGreen.bold' 'yarn run proxy' 'yarn run peril' 'yarn run peril.systems'",
-    "proxy": "micro-proxy -r peril.dev.rules -p 9000",
+    "start": "concurrently -t 'HH:mm' --names 'PRX,API,WEB' -c 'black.bgWhite,bgBlue.bold,bgGreen.bold' 'yarn run proxy' 'yarn run peril' 'yarn run peril.systems'",
+    "proxy": "micro-proxy -r peril.dev.rules.json -p 9000",
     "peril": "cd peril && PORT=9001 yarn start",
-    "peril.systems": "cd peril.systems && PORT=9002 yarn dev",
+    "peril.systems": "cd peril.systems && PORT=9002 PUBLIC_API_ROOT_URL=http://localhost:9001 yarn dev",
 
     "deploy": ""
   }
