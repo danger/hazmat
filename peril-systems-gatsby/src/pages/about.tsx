@@ -1,5 +1,5 @@
-import * as React from "react";
-import { Container, Header, Icon, Segment } from "semantic-ui-react";
+import * as React from "react"
+import { Container, Header, Icon, Segment } from "semantic-ui-react"
 
 export default () => {
   return (
@@ -11,24 +11,8 @@ export default () => {
         </Header>
       </Segment>
       <Segment vertical>
-        <p>This starter was created by @fabien0102.</p>
-        <p>
-          For any question, I'm on{" "}
-          <a href="https://discord.gg/2bz8EzW" target="blank">
-            discord #reactiflux/gatsby
-          </a>
-        </p>
-        <p>
-          For any issues, any PR are welcoming
-          <a
-            href="https://github.com/fabien0102/gatsby-starter/issues"
-            target="blank"
-          >
-            {" "}
-            on this repository
-          </a>
-        </p>
+        <p>This starter was created by @orta.</p>
       </Segment>
     </Container>
-  );
-};
+  )
+}

@@ -7,15 +7,13 @@ module.exports = {
     "MarkdownRemark.frontmatter.author": `AuthorJson`
   },
   plugins: [
-    // Expose `/data` to graphQL layer
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `data`,
-        path: `${__dirname}/data`
+        name: `pages`,
+        path: `${__dirname}/src/pages/`
       }
     },
-
     // Parse all markdown files (each plugin add/parse some data into graphQL layer)
     {
       resolve: `gatsby-transformer-remark`,

@@ -1,5 +1,5 @@
-import * as React from "react";
-import { Grid, Header, Icon } from "semantic-ui-react";
+import * as React from "react"
+import { Grid, Header, Icon } from "semantic-ui-react"
 
 export default () => (
   <Grid
@@ -17,4 +17,4 @@ export default () => (
       </Grid.Row>
     </Grid.Column>
   </Grid>
-);
+)

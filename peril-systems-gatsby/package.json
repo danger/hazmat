@@ -1,26 +1,27 @@
 {
   "name": "gatsby-starter",
   "version": "1.0.0",
-  "description": "Gatsby 1.0 starter",
-  "author": "fabien0102 <fabien0102@gmail.com>",
+  "description": "Peril Systems Gatsy",
+  "author": "orta.therox@gmail.com",
   "license": "MIT",
   "scripts": {
-    "start": "gatsby develop",
+    "start": "concurrently --kill-others 'gatsby develop' 'yarn relay --watch'",
     "develop": "gatsby develop",
+    "schema:download": "yarn run schema:download:gql && yarn run schema:download:json",
+    "schema:download:gql": "yarn graphql get-schema -e http://localhost:5000/api/graphql -o relay_data/schema.graphql --no-all",
+    "schema:download:json": "yarn graphql get-schema -e http://localhost:5000/api/graphql -o relay_data/schema.json --json --no-all",
+    "relay": "yarn relay-compiler --src ./ --include 'src/components/**/*' 'src/pages/**/*'  --schema relay_data/schema.graphql --language typescript",
     "build": "gatsby build",
-    "lint": "npm run lint:ts && npm run lint:md && npm run lint:js && npm run lint:css",
-    "lint:ts": "tslint \"./src/**/*.ts\" \"./src/**/*.tsx\"",
-    "lint:md": "remark .",
-    "lint:js": "xo",
-    "lint:css": "stylelint \"src/**/*.css\"",
-    "lint:scss": "stylelint src/**/*.scss --syntax scss",
-    "test": "npm run lint && jest",
-    "test:watch": "jest --watch",
-    "generate": "plop --plopfile ./generators/plopfile.js",
+    "test": "jest",
     "graphql-types": "gql-gen --url http://localhost:8000/___graphql --template typescript --out ./src/graphql-types.d.ts",
-    "precommit": "lint-staged",
-    "storybook": "start-storybook -p 9001 -c .storybook",
-    "storybook:build": "build-storybook -c .storybook -o public/docs"
+    "precommit": "lint-staged"
+  },
+  "resolutions": {
+    "graphql": "^0.13.2",
+    "babel-plugin-relay": "https://github.com/alloy/relay/releases/download/v1.5.0-artsy.5/babel-plugin-relay-1.5.0-artsy.5.tgz",
+    "relay-compiler": "https://github.com/alloy/relay/releases/download/v1.5.0-artsy.5/relay-compiler-1.5.0-artsy.5.tgz",
+    "relay-runtime": "https://github.com/alloy/relay/releases/download/v1.5.0-artsy.5/relay-runtime-1.5.0-artsy.5.tgz",
+    "react-relay": "https://github.com/alloy/relay/releases/download/v1.5.0-artsy.5/react-relay-1.5.0-artsy.5.tgz"
   },
   "dependencies": {
     "@types/lodash": "^4.14.63",
@@ -30,6 +31,7 @@
     "@types/react-router": "^4.0.14",
     "@types/react-router-dom": "^4.0.8",
     "babel-eslint": "^8.2.3",
+    "babel-plugin-relay": "https://github.com/alloy/relay/releases/download/v1.5.0-artsy.5/babel-plugin-relay-1.5.0-artsy.5.tgz",
     "change-case": "^3.0.1",
     "gatsby": "latest",
     "gatsby-link": "latest",
@@ -50,10 +52,15 @@
     "gatsby-transformer-sharp": "latest",
     "graphql-code-generator": "^0.9.1",
     "gray-matter": "^4.0.1",
+    "isomorphic-unfetch": "^2.0.0",
     "lodash": "^4.17.4",
+    "prop-types": "^15.6.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-helmet": "5.2.0",
+    "react-relay": "https://github.com/alloy/relay/releases/download/v1.5.0-artsy.5/react-relay-1.5.0-artsy.5.tgz",
+    "relay-compiler": "https://github.com/alloy/relay/releases/download/v1.5.0-artsy.5/relay-compiler-1.5.0-artsy.5.tgz",
+    "relay-compiler-language-typescript": "^0.9.0",
     "semantic-ui-react": "^0.81.1",
     "slash": "2.0.0",
     "typescript": "2.9.1"
@@ -62,11 +69,15 @@
     "@types/enzyme": "^3.1.10",
     "@types/jest": "^23.0.0",
     "@types/node": "^10.3.2",
+    "@types/prop-types": "^15.5.3",
+    "@types/react-relay": "^1.3.6",
     "@types/react-test-renderer": "^16.0.0",
     "@types/webpack-env": "^1.13.1",
+    "concurrently": "^3.5.1",
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-16": "^1.0.0",
     "flat": "^4.0.0",
+    "graphql-cli": "^2.16.2",
     "husky": "0.14.3",
     "jest": "23.1.0",
     "lint-staged": "7.1.3",
@@ -117,9 +128,6 @@
     "*.md": [
       "yarn prettier --write",
       "git add"
-    ],
-    "*.css": [
-      "stylelint"
     ]
   },
   "remarkConfig": {
